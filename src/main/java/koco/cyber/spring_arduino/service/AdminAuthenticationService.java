@@ -25,6 +25,8 @@ public class AdminAuthenticationService implements UserDetailsService {
         if (administrator.isEmpty()) {
             throw new UsernameNotFoundException("User not found");
         }
+        System.out.println("User authenticated: " + administrator.get().getUsername());
+
         return org.springframework.security.core.userdetails.User
                 .withUsername(administrator.get().getUsername())
                 .password(administrator.get().getPassword())

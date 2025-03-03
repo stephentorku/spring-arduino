@@ -24,7 +24,10 @@ public class SecurityConfig {
                         .requestMatchers("/login", "/register", "/auth/register", "/otp/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(withDefaults())
+                .formLogin(form -> form
+                        .defaultSuccessUrl("/home", true)  // Redirect after login
+                        .failureUrl("/login?error=true")  // Handle login errors
+                )
                 .logout(withDefaults());
 
         return http.build();
